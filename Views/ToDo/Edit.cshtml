@@ -1,0 +1,43 @@
+﻿@model ToDoModel
+@{
+    ViewData["Title"] = "Edit ToDo";
+}
+
+<div class="text-center">
+
+
+    <h1 class="display-4">Edit ToDo</h1>
+
+</div>
+
+<form asp-controller="ToDo" asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" asp-for="Name" class="form-control" placeholder="">
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" asp-for="Description" class="form-control" placeholder="">
+        @Html.ValidationMessageFor(x => x.Description)
+    </div>
+    <div class="form-group">
+        <label>StartDate</label>
+        <input placeholder="Selected date" type="date" id="date-picker-example" asp-for="DateStart" class="form-control datepicker">
+        @Html.ValidationMessageFor(x => x.DateStart)
+    </div>
+    <div class="form-group">
+        <label>EndDate</label>
+        <input placeholder="Selected date" type="date" id="date-picker-example" asp-for="EndDate" class="form-control datepicker">
+        @Html.ValidationMessageFor(x => x.EndDate)
+
+    </div>
+    <br />
+
+    <button type="submit" class="btn btn-primary ">Modify</button>
+    <a class="btn btn-secondary " asp-controller="" asp-action="Index" role="button">Return</a>
+</form>
+

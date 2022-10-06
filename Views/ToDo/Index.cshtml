@@ -1,0 +1,65 @@
+﻿@model List<ToDoModel>
+@{
+    ViewData["Title"] = "ToDo Aplication";
+}
+
+<div class="text-center">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-secondary" role="button" asp-controller="ToDo" asp-action="Create">Add new ToDo</a>
+    </div>
+    <br />
+
+    @if (TempData["SucessMessage"] != null) 
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close" ->X</button>
+            @TempData["SucessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close" ->X</button>
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <br />
+
+
+    <h1 class="display-4">ToDo Aplication</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">StartDate</th>
+                <th scope="col">EndDate</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (ToDoModel toDo in Model)
+                {
+                    <tr>
+                        <th scope="row">@toDo.Id</th>
+                        <td>@toDo.Name</td>
+                        <td>@toDo.Description</td>
+                        <td>@toDo.DateStart</td>
+                        <td>@toDo.EndDate</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-secondary" asp-route-id="@toDo.Id" asp-controller="ToDo" asp-action="Edit">Edit</a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@toDo.Id" asp-controller="ToDo" asp-action="Delete">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

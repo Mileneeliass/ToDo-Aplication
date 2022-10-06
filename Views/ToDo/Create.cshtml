@@ -1,0 +1,39 @@
+﻿@model ToDoModel
+@{
+    ViewData["Title"] = "Create ToDo";
+}
+
+<div class="text-center">
+  
+
+    <h1 class="display-4">Add new ToDo</h1>
+   
+</div>
+
+<form asp-controller="ToDo" asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" asp-for="Name" class="form-control" placeholder="">
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" asp-for="Description" class="form-control" placeholder="">
+        @Html.ValidationMessageFor(x => x.Description)
+    </div>
+    <div class="form-group">
+        <label>StartDate</label>
+        <input placeholder="Selected date" type="date" id="date-picker-example" asp-for="DateStart" class="form-control datepicker">
+        @Html.ValidationMessageFor(x => x.DateStart)
+    </div>
+    <div class="form-group">
+        <label>EndDate</label>
+        <input placeholder="Selected date" type="date" id="date-picker-example" asp-for="EndDate" class="form-control datepicker">
+        @Html.ValidationMessageFor(x => x.EndDate)
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary ">Add</button>
+    <a class="btn btn-secondary " asp-controller="" asp-action="Index" role="button">Return</a>
+</form>
+
